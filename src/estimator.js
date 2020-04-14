@@ -1,5 +1,3 @@
-const severeImpactData = require('./severeImpact');
-
 const getPercentage = (percent) => percent / 100;
 
 const covid19ImpactEstimator = (data) => {
@@ -26,8 +24,7 @@ const covid19ImpactEstimator = (data) => {
   );
 
   severeImpacts.currentlyInfected = data.reportedCases * 50;
-  severeImpacts.infectionsByRequestedTime =
-    severeImpacts.currentlyInfected * 512;
+  severeImpacts.infectionsByRequestedTime = severeImpacts.currentlyInfected * 512;
   severeImpacts.severeCasesByRequestedTime = Math.trunc(
     getPercentage(15) * severeImpacts.infectionsByRequestedTime
   );
