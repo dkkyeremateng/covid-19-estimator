@@ -1,4 +1,8 @@
-const impact = (data) => {
+const getPercentage = (percent) => {
+  return percent / 100;
+};
+
+const impactData = (data) => {
   const impact = {};
 
   impact.currentlyInfected = data.reportedCases * 10;
@@ -7,8 +11,7 @@ const impact = (data) => {
     getPercentage(15) * impact.infectionsByRequestedTime
   );
   impact.hospitalBedsByRequestedTime = Math.trunc(
-    getPercentage(35) *
-      (data.totalHospitalBeds - impact.severeCasesByRequestedTime)
+    getPercentage(35) * (data.totalHospitalBeds - impact.severeCasesByRequestedTime)
   );
   impact.casesForICUByRequestedTime = Math.trunc(
     getPercentage(5) * impact.infectionsByRequestedTime
@@ -23,8 +26,4 @@ const impact = (data) => {
   return impact;
 };
 
-const getPercentage = (percent) => {
-  return percent / 100;
-};
-
-export default impact;
+export default impactData;

@@ -1,4 +1,8 @@
-const severeImpact = (data) => {
+const getPercentage = (percent) => {
+  return percent / 100;
+};
+
+const severeImpactData = (data) => {
   const severeImpact = {};
 
   severeImpact.currentlyInfected = data.reportedCases * 50;
@@ -7,8 +11,7 @@ const severeImpact = (data) => {
     getPercentage(15) * severeImpact.infectionsByRequestedTime
   );
   severeImpact.hospitalBedsByRequestedTime = Math.trunc(
-    getPercentage(35) *
-      (data.totalHospitalBeds - severeImpact.severeCasesByRequestedTime)
+    getPercentage(35) * (data.totalHospitalBeds - severeImpact.severeCasesByRequestedTime)
   );
   severeImpact.casesForICUByRequestedTime = Math.trunc(
     getPercentage(5) * severeImpact.infectionsByRequestedTime
@@ -23,8 +26,4 @@ const severeImpact = (data) => {
   return severeImpact;
 };
 
-const getPercentage = (percent) => {
-  return percent / 100;
-};
-
-export default severeImpact;
+export default severeImpactData;
