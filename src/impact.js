@@ -1,6 +1,6 @@
 const getPercentage = (percent) => percent / 100;
 
-const impactData = (data) => {
+function impactData(data) {
   const impact = {};
 
   impact.currentlyInfected = data.reportedCases * 10;
@@ -22,6 +22,6 @@ const impactData = (data) => {
   );
 
   return impact;
-};
+}
 
 export default impactData;
