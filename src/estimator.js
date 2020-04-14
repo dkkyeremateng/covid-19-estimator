@@ -1,5 +1,7 @@
 const severeImpactData = require('./severeImpact');
 
+const getPercentage = (percent) => percent / 100;
+
 const covid19ImpactEstimator = (data) => {
   const input = data;
   const impacts = {};
