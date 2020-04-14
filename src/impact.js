@@ -1,6 +1,4 @@
-const getPercentage = (percent) => {
-  return percent / 100;
-};
+const getPercentage = (percent) => percent / 100;
 
 const impactData = (data) => {
   const impact = {};
