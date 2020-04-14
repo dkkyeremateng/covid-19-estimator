@@ -1,10 +1,28 @@
-const impactData = require('./impact');
 const severeImpactData = require('./severeImpact');
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
-  const impacts = impactData(input);
+  const impacts = {};
   const severeImpacts = severeImpactData(input);
+
+  impacts.currentlyInfected = data.reportedCases * 10;
+  impacts.infectionsByRequestedTime = impacts.currentlyInfected * 512;
+  impacts.severeCasesByRequestedTime = Math.trunc(
+    getPercentage(15) * impacts.infectionsByRequestedTime
+  );
+  impacts.hospitalBedsByRequestedTime = Math.trunc(
+    getPercentage(35) *
+      (data.totalHospitalBeds - impacts.severeCasesByRequestedTime)
+  );
+  impacts.casesForICUByRequestedTime = Math.trunc(
+    getPercentage(5) * impacts.infectionsByRequestedTime
+  );
+  impacts.casesForVentilatorsByRequestedTime = Math.trunc(
+    getPercentage(2) * impacts.infectionsByRequestedTime
+  );
+  impacts.dollarsInFlight = Math.trunc(
+    (impacts.infectionsByRequestedTime * 0.65 * 1.5) / 30
+  );
 
   return {
     data: input, // the input data you got
